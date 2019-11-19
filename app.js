@@ -44,7 +44,7 @@ const crawler = async() => {
         return '쪄죽을 날씨에요. 닥 민소매. 선크림도 당연히 필수겠죠?'
       }
     };
-    schedule.scheduleJob('49 18 * * *', async()=>{
+    schedule.scheduleJob('12 00 * * *', async()=>{
       await webhook.send({
             type: 'mrkdwn',
             attachments:[{
@@ -52,7 +52,8 @@ const crawler = async() => {
             fields:[
               {
                 title: `날씨봇 ON !!! 기온과 옷차림을 알려드리겠습니다.`,
-                value: `-\n
+                value: 
+`-\n
 오늘 ${location}은 *최고 ${todayHighTmp}°, 최저 ${todayLowTmp}°* 였으며,\n
 내일 ${location}은 *최고 ${tomorrowHighTmp}°, 최저 ${tomorrowLowTmp}°* 입니다.\n\n
 ${tomorrowLook(tomorrowAverTmp)}`,
