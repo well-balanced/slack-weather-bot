@@ -2,6 +2,7 @@
 const { IncomingWebhook } = require('@slack/webhook');
 require('dotenv').config() // .env file config
 const url = process.env.WebhookUrl; // env에 있는 url 로드
+const PORT = process.env.PORT;
 const webhook = new IncomingWebhook(url); 
 const express = require('express'); // express 모듈 사용
 const app = express();
@@ -61,6 +62,6 @@ const crawler = async() => {
 
 crawler()
 
-  app.listen(3000, function () {
+  app.listen(PORT, function () {
     console.log('Example app listening on port 3000!');
   });
