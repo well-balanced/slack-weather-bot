@@ -44,7 +44,7 @@ const crawler = async() => {
         return '쪄죽을 날씨에요. 닥 민소매. 선크림도 당연히 필수겠죠?'
       }
     };
-    schedule.scheduleJob('28 3 * * *', async()=>{
+    schedule.scheduleJob('41 3 * * *', async()=>{
       await webhook.send({
             type: 'mrkdwn',
             attachments:[{
