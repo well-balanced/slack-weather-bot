@@ -12,7 +12,7 @@ const axios = require('axios')
 const iconv = require('iconv-lite');
 
 // Crawling
-var target_url = 'https://www.weather.go.kr/weather/forecast/timeseries.jsp'
+const target_url = 'https://www.weather.go.kr/weather/forecast/timeseries.jsp'
 const crawler = async() => {
   const response = await axios.get(target_url,{
     responseType : "arraybuffer",
@@ -42,22 +42,29 @@ const crawler = async() => {
         return '반팔이나 얇은 셔츠, 반바지나 면바지. 어쨌든 가볍게 입고나와요~'
       } else {
         return '쪄죽을 날씨에요. 닥 민소매. 선크림도 당연히 필수겠죠?'
-      }};
-       schedule.scheduleJob('28 3 * * *', async()=>{
-         await webhook.send({
+      }
+    };
+    schedule.scheduleJob('28 3 * * *', async()=>{
+      await webhook.send({
             type: 'mrkdwn',
             attachments:[{
             color: "#FFFFFF",
             fields:[
               {
-                title:`날씨봇 ON !!! 기온과 옷차림을 알려드리겠습니다.`,
-                value:`-\n오늘 ${location}은 *최고 ${todayHighTmp}°, 최저 ${todayLowTmp}°* 였으며,\n내일 ${location}은 *최고 ${tomorrowHighTmp}°, 최저 ${tomorrowLowTmp}°* 입니다.\n\n${tomorrowLook(tomorrowAverTmp)}`,
-                short:false}
-                  ]}],
-            })
-         })
-      }
-    };
+                title: `날씨봇 ON !!! 기온과 옷차림을 알려드리겠습니다.`,
+                value: `-\n
+                오늘 ${location}은 *최고 ${todayHighTmp}°, 최저 ${todayLowTmp}°* 였으며,\n
+                내일 ${location}은 *최고 ${tomorrowHighTmp}°, 최저 ${tomorrowLowTmp}°* 입니다.\n\n
+                ${tomorrowLook(tomorrowAverTmp)}`,
+                short:false
+              }
+            ]
+            }],
+      })
+    }
+    )
+  }
+};
 
 crawler()
 
