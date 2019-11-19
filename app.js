@@ -43,9 +43,8 @@ const crawler = async() => {
       } else {
         return '쪄죽을 날씨에요. 닥 민소매. 선크림도 당연히 필수겠죠?'
       }};
-      // schedule.scheduleJob('00 23 * * *', async()=>{
-      //   await 
-        webhook.send({
+       schedule.scheduleJob('28 3 * * *', async()=>{
+         await webhook.send({
             type: 'mrkdwn',
             attachments:[{
             color: "#FFFFFF",
@@ -56,12 +55,12 @@ const crawler = async() => {
                 short:false}
                   ]}],
             })
-        // })
+         })
       }
     };
 
 crawler()
 
-  app.listen(PORT, function () {
-    console.log('Example app listening on port 3000!');
-  });
+app.listen(PORT, function () {
+  console.log('Successed!');
+});
