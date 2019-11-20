@@ -1,5 +1,5 @@
 
-const scrape = require('./src/scrape')
+const scrape = require('./src/scrape') 
 // const formatMessage = require('./src/formatMessage')
 const sendToSlack = require('./src/sendToSlack')
 // 슬랙봇 초기화
@@ -80,8 +80,10 @@ require('dotenv').config() // .env file config
 // });
 
 async function main() {
-  const weatherInfo = await scrape.crawl();
-  const message = message.formatMessage
-  sendToSlack.sendToSlack(message)
+  scrape.crawl();
+  scrape.tomorrowLook()
+  message = scrape.message
+  sendToSlack.sendToSlack()
+  console.log(message)
 }
 main()

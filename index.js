@@ -14,9 +14,11 @@ const iconv = require('iconv-lite');
 
 //Crawling
 
+
+
 const crawler = async() => {
   const target_url = 'https://www.weather.go.kr/weather/forecast/timeseries.jsp'
-  const response = await axios.get(target_url,{responseType : "arraybuffer"});
+  response = await axios.get(target_url,{responseType : "arraybuffer"})
   if (response.status == 200) {
     const html = iconv.decode(response.data, 'EUC-KR').toString();
     const $ = cheerio.load(html)
@@ -26,10 +28,13 @@ const crawler = async() => {
     const todayLowTmp = $("td.bg_tomorrow span.low_deg").text().split()
     const todayHighTmp = $("td.bg_tomorrow span.high_deg").text().split()
     const tomorrowLowTmp = $("td:nth-child(3) span.low_deg").text().split()
+    let tomorrowLow
     const tomorrowHighTmp = $("td:nth-child(3) span.high_deg").text().split()
+
 
     const location = locationDetail.substring(0,2)
     const tomorrowAverTmp = (tomorrowLowTmp+tomorrowHighTmp)/2
+    console.log(tomorrowAverTmp)
     tomorrowLook = (tomorrowAverTmp) => {
       if (tomorrowAverTmp<5){
         return '날씨가 춥네요. 패딩과 두꺼운 코트가 좋겠어요. 목도리나 기모제품도 챙겨주는 센스!'
@@ -47,8 +52,9 @@ const crawler = async() => {
         return '쪄죽을 날씨에요. 닥 민소매. 선크림도 당연히 필수겠죠?'
       }
     };
-    schedule.scheduleJob('12 00 * * *', async()=>{
-      await webhook.send({
+    // schedule.scheduleJob('12 00 * * *', async()=>{
+      // await 
+      webhook.send({
             type: 'mrkdwn',
             attachments:[{
             color: "#FFFFFF",
@@ -57,17 +63,15 @@ const crawler = async() => {
                 title: `날씨봇 ON !!! 기온과 옷차림을 알려드리겠습니다.`,
                 value: 
 `-\n
-오늘 ${location}은 *최고 ${todayHighTmp}°, 최저 ${todayLowTmp}°* 였으며,\n
-내일 ${location}은 *최고 ${tomorrowHighTmp}°, 최저 ${tomorrowLowTmp}°* 입니다.\n\n
-${tomorrowLook(tomorrowAverTmp)}`,
+d`,
                 short:false
               }
             ]
             }],
       })
     }
-    )
-  }
+    //)
+  //}
 };
 
 crawler()

@@ -7,12 +7,9 @@ const app = express();
 //  function sendToSlack(message){
 //      schedule.scheduleJob('12 00 * * *', webhook.send(message))
 // };
-exports.sendToSlack = function(message){
+module.exports = sendToSlack
+function sendToSlack(message){
   const url = process.env.WebhookUrl;
-  const PORT = process.env.PORT;
   const webhook = new IncomingWebhook(url);
-  webhook.send(message)
-  app.listen(PORT, function () {
-    console.log('Successed!');
-  });
+  webhook.send(message);
 };
