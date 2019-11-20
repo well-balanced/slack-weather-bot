@@ -77,7 +77,7 @@ ${createdMessage}`,
 function sendToSlack(message){
     const url = process.env.WebhookUrl;
     const webhook = new IncomingWebhook(url);
-    schedule.scheduleJob('12 00 * * *',webhook.send(message));
+    schedule.scheduleJob('36 20 * * *',async()=>await webhook.send(message));
 };
 
 async function main(){
