@@ -1,6 +1,6 @@
 
-const scrapeWeatherInfo = require('./src/scrapeWeatherInfo')
-const formatMessage = require('./src/formatMessage')
+const scrape = require('./src/scrape')
+// const formatMessage = require('./src/formatMessage')
 const sendToSlack = require('./src/sendToSlack')
 // 슬랙봇 초기화
 // const { IncomingWebhook } = require('@slack/webhook');
@@ -80,7 +80,8 @@ require('dotenv').config() // .env file config
 // });
 
 async function main() {
-  const weatherInfo = await crawl();
-  const message = {formatMessage}
-  sendToSlack(message)
+  const weatherInfo = await scrape.crawl();
+  const message = message.formatMessage
+  sendToSlack.sendToSlack(message)
 }
+main()

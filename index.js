@@ -72,6 +72,6 @@ ${tomorrowLook(tomorrowAverTmp)}`,
 
 crawler()
 
-app.listen(PORT, function () {
+app.listen(PORT || 3000, function () {
   console.log('Successed!');
 });
