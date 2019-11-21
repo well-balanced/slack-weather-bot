@@ -34,7 +34,7 @@ const crawler = async() => {
     } 
 }
 
-createMessage = function(tomorrowAverTemp) {
+const createMessage = function(tomorrowAverTemp) {
     if (tomorrowAverTemp<5){
         return '날씨가 춥네요. 패딩과 두꺼운 코트가 좋겠어요. 목도리나 기모제품도 챙겨주는 센스!'
     } else if (tomorrowAverTemp<10){
@@ -52,7 +52,7 @@ createMessage = function(tomorrowAverTemp) {
     }
 }
 
-formatMessage = function(location, todayLowTemp, todayHighTemp, tomorrowLowTemp, tomorrowHighTemp,  createdMessage){
+const formatMessage = function(location, todayLowTemp, todayHighTemp, tomorrowLowTemp, tomorrowHighTemp,  createdMessage){
     return {
         type: 'mrkdwn',
         attachments: [
@@ -85,7 +85,7 @@ async function main(){
     const tomorrowAverTemp = crawledData.tomorrowAverTemp
     const createdMessage = createMessage(tomorrowAverTemp)
     const message = formatMessage(crawledData.location, crawledData.todayLowTemp, crawledData.todayHighTemp, crawledData.tomorrowLowTemp, crawledData.tomorrowHighTemp, createdMessage)
-    sendToSlack(message);
+    schedule.scheduleJob('00 21 * * * ',sendToSlack(message));
 }
 
-main()
+main();
