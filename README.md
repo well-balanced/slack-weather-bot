@@ -21,9 +21,13 @@
 
 ## 사용법
 
-```npm install```
+```
+npm install
+```
 
-```touch .env```
+```
+touch .env
+```
 
 `.env` 파일에 내용 추가
 ```
