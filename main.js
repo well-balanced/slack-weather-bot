@@ -1,8 +1,9 @@
-require('dotenv').config()
+require('dotenv').config();
 const { IncomingWebhook } = require('@slack/webhook');
 const url = process.env.WebhookUrl;
 const webhook = new IncomingWebhook(url);
-const scrape = require('./scrape')
+const scrape = require('./scrape');
+const cronJob = require('cron').CronJob;
 
 const sendToSlack = async() => {
     const weather = await scrape.getWeather()
@@ -12,4 +13,6 @@ const sendToSlack = async() => {
     webhook.send(message);
 }
 
-sendToSlack();
+// new cronJob('00 00 21 * * *', () => {
+    sendToSlack();
+// },null,true,"Asia/Seoul")
