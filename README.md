@@ -17,12 +17,26 @@
 <img width="648" alt="스크린샷 2020-01-09 18 02 07" src="https://user-images.githubusercontent.com/48206623/72054167-cf12e400-330b-11ea-8855-c63a4ed90c1b.png">
 
 5. URL 복사
-<img width="643" alt="스크린샷 2020-01-09 19 26 14" src="https://user-images.githubusercontent.com/48206623/72059748-f1a9fa80-3315-11ea-8f8c-afeb922fcd30.png">
 
 
 ## 사용법
 
-`npm install`
+```npm install```
 
-<img width="612" alt="스크린샷 2020-01-09 17 55 54" src="https://user-images.githubusercontent.com/48206623/72054166-ce7a4d80-330b-11ea-9d7c-7785ebf4ab5b.png">
-<img width="648" alt="스크린샷 2020-01-09 18 02 07" src="https://user-images.githubusercontent.com/48206623/72054167-cf12e400-330b-11ea-8855-c63a4ed90c1b.png">
+```touch .env```
+
+`.env` 파일에 내용 추가
+```
+WebhookUrl=[위에서 복사한 Webhook URL]
+```
+
+`main.js` 시간 셋팅
+> ex) 30 10 15 * * 1-5 : 매주 월요일부터 금요일까지 15시 10분 30초에 코드 동작
+```
+초기 셋팅은 매일 21시 00분에 오도록 되어있습니다.
+new cronJob('00 00 21 * * *', () => {
+    sendToSlack();
+},null,true,"Asia/Seoul")
+```
+
+```npm start```
