@@ -1,4 +1,4 @@
-# slack-weather-bot
+# 날씨봇
 
 > 원하는 시간에 슬랙 채널로 다음날 서울시의 기온을 미리 받아보실 수 있습니다.
 
@@ -28,6 +28,7 @@ npm install
 
 ```
 touch .env
+vim .env
 ```
 
 `.env` 파일에 내용 추가
